@@ -1,0 +1,24 @@
+
+{
+    "name": "netberry/xlsx-writer",
+    "description": "xlsx Writer - write real Excel xlsx in PHP",
+    "keywords": ["PHP","Excel","OpenXML","xlsx","spreadsheet"],
+    "homepage": "http://netberry.com",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vladimir Luchaninov",
+            "homepage": "http://luchaninov.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.0",
+        "ext-zip": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "PHPExcel": "src/"
+        }
+    }
+}

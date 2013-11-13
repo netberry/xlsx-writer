@@ -1,0 +1,5 @@
+## IDE support
+*.buildpath
+*.project
+/.settings
+/.idea
