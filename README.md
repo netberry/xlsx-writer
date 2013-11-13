@@ -10,7 +10,7 @@ Install with [Composer](http://getcomposer.org).
 ```json
 {
 	"require": {
-		"netberry/xlsxwriter": "0.0.1"
+		"netberry/xlsx-writer": "dev-master"
 	}
 }
 ```
