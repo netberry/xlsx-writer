@@ -1,7 +1,8 @@
 <?php
 namespace Netberry;
 
-class XlsxWriter {
+class XlsxWriter
+{
     private static $files = array(
         '_rels/.rels' => '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>',
 
@@ -71,6 +72,10 @@ class XlsxWriter {
             foreach ($keys as $key) {
                 $value = (array_key_exists($key, $row)) ? $row[$key] : '';
 
+                if (is_array($value)) {
+                    $value = self::flattenArray($value);
+                }
+
                 if (preg_match('#^[\d\.]+$#', $value)) {
                     $result .= '<c><v>' . $value . '</v></c>';
                 } else {
@@ -88,5 +93,19 @@ class XlsxWriter {
         }
 
         return $result;
+    }
+
+    private static function flattenArray($value)
+    {
+        $result = array();
+        foreach ($value as $key => $value2) {
+            if (is_array($value2)) {
+                $result[] = $key . ' (' . self::flattenArray($value2) . ')';
+            } else {
+                $result[] = $value2;
+            }
+        }
+
+        return implode(', ', $result);
     }
 }
