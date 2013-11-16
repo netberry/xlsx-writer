@@ -95,12 +95,16 @@ class XlsxWriter
         return $result;
     }
 
-    private static function flattenArray($value)
+    private static function flattenArray($value, $maxDepthLevel = 3)
     {
         $result = array();
         foreach ($value as $key => $value2) {
             if (is_array($value2)) {
-                $result[] = $key . ' (' . self::flattenArray($value2) . ')';
+                if ($maxDepthLevel > 0) {
+                    $result[] = $key . ' (' . self::flattenArray($value2, $maxDepthLevel - 1) . ')';
+                } else {
+                    $result[] = $key;
+                }
             } else {
                 $result[] = $value2;
             }
