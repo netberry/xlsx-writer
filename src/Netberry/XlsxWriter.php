@@ -76,8 +76,8 @@ class XlsxWriter
                     $value = self::flattenArray($value);
                 }
 
-                if (preg_match('#^[\d\.]+$#', $value)) {
-                    $result .= '<c><v>' . $value . '</v></c>';
+                if (preg_match('#^\s*\-?[\d\.]+\s*$#', $value)) {
+                    $result .= '<c><v>' . trim($value) . '</v></c>';
                 } else {
                     if (defined('ENT_XML1')) {
                         $value = htmlspecialchars($value, ENT_QUOTES | ENT_XML1, $options['encoding']);
